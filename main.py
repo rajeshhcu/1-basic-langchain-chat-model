@@ -12,7 +12,7 @@ Netflix, and Instagram use Python extensively in their applications.
 """
 
 template = """
-Based on the information {information} provided, generate the summary in 2 bullet points
+First greet the user and then based on the information {information} provided, generate the summary in 2 bullet points.
 """
 
 structured_prompt_template = PromptTemplate(input_variables=["information"],
@@ -23,3 +23,4 @@ llm = ChatOpenAI()
 chain = structured_prompt_template | llm
 response = chain.invoke(input={"information": information})
 print(response.content)
+print(f"Total number of tokens used: {response.response_metadata['token_usage']['total_tokens']}")
